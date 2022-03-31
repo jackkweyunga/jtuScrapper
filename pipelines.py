@@ -8,9 +8,10 @@
 from itemadapter import ItemAdapter
 # import psycopg2
 import requests as rq
+from settings import API_URL
 
 # base_url = "http://127.0.0.1:8000/"
-base_url = "https://jtu-api.herokuapp.com/"
+base_url = API_URL
 
 token_url = base_url+"api-token-auth/"
 course_url = base_url+"courses/"
@@ -28,7 +29,7 @@ class UdsmtimetableScrapperPipeline:
     cleared = False
     
     def open_spider(self, spider):
-        token = rq.post(base_url+"api-token-auth/", {'username':'jek','password':'silicon'}).json()["token"]
+        token = rq.post(base_url+"api-token-auth/", {'username':'admin','password':'changeme'}).json()["token"]
         self.header = {'Authorization': "Token "+token} 
         ms = rq.get(clear_periods_url, headers=self.header).json()["message"]
         if ms == "clear":
@@ -38,6 +39,7 @@ class UdsmtimetableScrapperPipeline:
         pass
 
     def process_item(self, item, spider):
+        
         if self.cleared:
             try:
                 course = rq.post(course_url, {"code":item["courses"]}, headers=self.header).json()["course"]

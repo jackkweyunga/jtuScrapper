@@ -12,6 +12,8 @@ BOT_NAME = 'udsmtimetable_scrapper'
 SPIDER_MODULES = ['udsmtimetable_scrapper.spiders']
 NEWSPIDER_MODULE = 'udsmtimetable_scrapper.spiders'
 
+API_URL = "http://ratiba.janjas.ml/"
+
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'udsmtimetable_scrapper (+http://www.yourdomain.com)'

@@ -12,5 +12,3 @@ class TimetableItem(scrapy.Item):
     courses = scrapy.Field()
     rooms = scrapy.Field()
     day = scrapy.Field()
-
-
